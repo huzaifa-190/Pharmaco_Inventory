@@ -1,0 +1,64 @@
+﻿@page
+@model Inventory_Management_Dashboard.Pages.Orders.IndexModel
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<div class="container mx-auto px-4 py-6">
+
+    <h1 class="text-3xl font-bold text-green-700 mb-6">Orders</h1>
+
+    <div class="mb-4">
+        <a asp-page="Create" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">+ Add New Order</a>
+    </div>
+
+    <div class="overflow-x-auto rounded-lg shadow">
+        <table class="w-full text-left border border-gray-200">
+            <thead class="bg-green-100 text-green-800">
+                <tr>
+                    <th class="p-3">Quantity</th>
+                    <th class="p-3">Order Date</th>
+                    <th class="p-3">Total Price</th>
+                    <th class="p-3">Product</th>
+                    <th class="p-3">Customer</th>
+                    <th class="p-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white">
+                @foreach (var item in Model.Order)
+                {
+                    <tr class="border-b hover:bg-green-50">
+                        <td class="p-3">@item.Quantity</td>
+                        <td class="p-3">@item.OrderDate.ToString("yyyy-MM-dd")</td>
+                        <td class="p-3">@String.Format("{0:C}", item.TotalPrice)</td>
+                        <td class="p-3">@item.Product?.Name</td>
+                        <td class="p-3">@item.User?.Email</td>
+                        <td class="p-3 flex items-center space-x-3">
+                            <a asp-page="./Edit" asp-route-id="@item.OrderId" class="text-green-600 hover:text-green-800" title="Edit">
+                                <i data-lucide="edit" class="w-5 h-5"></i>
+                            </a>
+                            <a asp-page="./Details" asp-route-id="@item.OrderId" class="text-blue-600 hover:text-blue-800" title="Details">
+                                <i data-lucide="info" class="w-5 h-5"></i>
+                            </a>
+                            <a asp-page="./Delete" asp-route-id="@item.OrderId" class="text-red-600 hover:text-red-800" title="Delete">
+                                <i data-lucide="trash-2" class="w-5 h-5"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+@section Scripts {
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        } else {
+            console.error("Lucide is not loaded.");
+        }
+    </script>
+}
+

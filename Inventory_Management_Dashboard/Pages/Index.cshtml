@@ -1,0 +1,76 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="min-h-screen bg-white flex flex-col">
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-green-50 to-white pb-28 pt-24 px-6 md:px-12 text-center">
+        <h1 class="text-5xl md:text-7xl font-extrabold text-green-700 leading-tight tracking-tight drop-shadow-lg">
+            Welcome to <span class="text-green-600">Pharmalife</span>
+        </h1>
+        <p class="mt-8 text-gray-600 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+            Your trusted partner for genuine medicines, healthcare essentials, and wellness products. Delivered at your doorstep.
+        </p>
+        <div class="mt-12 flex flex-wrap justify-center gap-6">
+            <a asp-page="/Login/Index"
+               class="px-10 py-4 bg-green-600 text-white text-lg text-decoration-none font-semibold rounded-full hover:bg-green-700 transition-all duration-300 shadow-lg hover:scale-105">
+                Get Started
+            </a>
+            @* <a href="#features" *@
+            @*    class="px-10 py-4 border-2 border-green-600  text-lg font-semibold rounded-full hover:bg-green-50 transition-all duration-300 hover:scale-105 text-green-600 text-decoration-none "> *@
+            @*     Explore Features *@
+            @* </a> *@
+        </div>
+        @* <div class="mt-20 max-w-6xl mx-auto"> *@
+        @*     <img src="/images/pharmacy-landing.png" alt="Pharmacy Illustration" class="w-full rounded-3xl shadow-2xl"> *@
+        @* </div> *@
+    </section>
+
+    @* <!-- Features Section --> *@
+    @* <section id="features" class="py-28 px-6 md:px-20 bg-white"> *@
+    @*     <h2 class="text-4xl md:text-5xl font-extrabold text-center text-green-700 mb-16 drop-shadow-lg">Why Choose Us?</h2> *@
+    @*     <div class="grid md:grid-cols-3 gap-10"> *@
+    @*         <div class="p-10 bg-green-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] text-center"> *@
+    @*             <div class="text-green-600 text-5xl mb-5">💊</div> *@
+    @*             <h3 class="text-2xl font-semibold mb-4 text-green-800">100% Genuine Medicines</h3> *@
+    @*             <p class="text-gray-600 text-lg">We source directly from verified pharmaceutical companies ensuring safety and authenticity.</p> *@
+    @*         </div> *@
+    @*         <div class="p-10 bg-green-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] text-center"> *@
+    @*             <div class="text-green-600 text-5xl mb-5">🚚</div> *@
+    @*             <h3 class="text-2xl font-semibold mb-4 text-green-800">Fast Home Delivery</h3> *@
+    @*             <p class="text-gray-600 text-lg">Get your medicines delivered to your doorstep in just a few hours, with real-time tracking.</p> *@
+    @*         </div> *@
+    @*         <div class="p-10 bg-green-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] text-center"> *@
+    @*             <div class="text-green-600 text-5xl mb-5">📞</div> *@
+    @*             <h3 class="text-2xl font-semibold mb-4 text-green-800">24/7 Customer Support</h3> *@
+    @*             <p class="text-gray-600 text-lg">Our expert pharmacists and support team are available anytime for your queries and assistance.</p> *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </section> *@
+
+    @* <!-- Testimonials Section --> *@
+    @* <section class="py-28 px-6 md:px-20 bg-gradient-to-br from-white to-green-50"> *@
+    @*     <h2 class="text-4xl md:text-5xl font-extrabold text-center text-green-700 mb-16 drop-shadow-lg">What Our Customers Say</h2> *@
+    @*     <div class="grid md:grid-cols-2 gap-14 max-w-5xl mx-auto"> *@
+    @*         <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"> *@
+    @*             <p class="text-gray-600 italic text-lg mb-6 leading-relaxed">"Pharmalife made my medicine purchases so convenient. Genuine products with on-time delivery. Highly recommended!"</p> *@
+    @*             <h4 class="text-green-700 font-bold text-xl">– Ayesha Qureshi</h4> *@
+    @*         </div> *@
+    @*         <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"> *@
+    @*             <p class="text-gray-600 italic text-lg mb-6 leading-relaxed">"A lifesaver during emergencies. Love their 24/7 support and easy-to-use platform."</p> *@
+    @*             <h4 class="text-green-700 font-bold text-xl">– Zaid Ahmed</h4> *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </section> *@
+
+    
+
+    <!-- Footer -->
+    <footer class="text-center py-8 text-gray-400 text-sm bg-green-50 mt-auto border-t">
+        &copy; 2025 <span class="font-semibold text-green-700">Pharmalife</span>. All rights reserved.
+    </footer>
+
+</div>

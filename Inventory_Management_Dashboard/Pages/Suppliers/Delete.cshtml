@@ -1,0 +1,81 @@
+﻿@page
+@model Inventory_Management_Dashboard.Pages.Suppliers.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Supplier";
+}
+
+<div class="container mx-auto px-4 py-6">
+
+    <h1 class="text-3xl font-bold text-red-600 mb-6">Delete Supplier</h1>
+
+    <p class="mb-4 text-gray-700">Are you sure you want to delete this supplier?</p>
+
+    <div class="space-y-2">
+        <div>
+            <span class="font-medium text-gray-700">Name:</span>
+            <span class="ml-2">@Model.Supplier.Name</span>
+        </div>
+
+        <div>
+            <span class="font-medium text-gray-700">Email:</span>
+            <span class="ml-2">@Model.Supplier.Email</span>
+        </div>
+    </div>
+
+    <form method="post" class="pt-6">
+        <input type="hidden" asp-for="Supplier.SupplierId" />
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Confirm Delete</button>
+        <a asp-page="./Index" class="ml-3 text-gray-600 hover:text-gray-800">Cancel</a>
+    </form>
+
+</div>
+
+
+
+@* @page *@
+@* @model Inventory_Management_Dashboard.Pages.Suppliers.DeleteModel *@
+
+@* @{ *@
+@*     ViewData["Title"] = "Delete"; *@
+@* } *@
+
+@* <h1>Delete</h1> *@
+
+@* <h3>Are you sure you want to delete this?</h3> *@
+@* <div> *@
+@*     <h4>Supplier</h4> *@
+@*     <hr /> *@
+@*     <dl class="row"> *@
+@*         <dt class="col-sm-2"> *@
+@*             @Html.DisplayNameFor(model => model.Supplier.Name) *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Supplier.Name) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             @Html.DisplayNameFor(model => model.Supplier.Phone) *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Supplier.Phone) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             @Html.DisplayNameFor(model => model.Supplier.Email) *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Supplier.Email) *@
+@*         </dd> *@
+@*         <dt class="col-sm-2"> *@
+@*             @Html.DisplayNameFor(model => model.Supplier.Address) *@
+@*         </dt> *@
+@*         <dd class="col-sm-10"> *@
+@*             @Html.DisplayFor(model => model.Supplier.Address) *@
+@*         </dd> *@
+@*     </dl> *@
+    
+@*     <form method="post"> *@
+@*         <input type="hidden" asp-for="Supplier.SupplierId" /> *@
+@*         <input type="submit" value="Delete" class="btn btn-danger" /> | *@
+@*         <a asp-page="./Index">Back to List</a> *@
+@*     </form> *@
+@* </div> *@

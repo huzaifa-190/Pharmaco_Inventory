@@ -1,0 +1,77 @@
+﻿@page
+@model Inventory_Management_Dashboard.Pages.Login.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<body class="bg-white p-0 m-0 ">
+
+    <div class="flex h-screen ">
+        <!-- Left Side: Image Section -->
+        <div class="w-[40%] flex  ">
+            <img class="h-full w-full shadow-lg object-cover " src="/images/login_side.jpg" alt="Pharmacy Logo" />
+        </div>
+
+        <!-- Right Side: Form Section -->
+        <div class="w-[60%] flex items-center justify-center  px-8 py-12">
+            <div class="max-w-md w-full space-y-8">
+
+                <!-- Heading -->
+                <div>
+                    <h2 class="mt-6 text-center text-3xl font-extrabold text-black">Pharmacy Inventory Login</h2>
+                    <p class="mt-2 text-center text-sm text-gray-600">
+                        Sign in to manage your stock & records
+                    </p>
+                </div>
+
+                
+
+                <form method="post"  class="mt-8 space-y-6">
+                    @* <div asp-validation-summary="All" class="text-red-500 text-sm mb-4"></div> *@
+
+                    <div>
+                        <input asp-for="LoginForm.Email" autocomplete="email"
+                               class="appearance-none rounded-t-md relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-black focus:outline-none focus:ring-green-400 focus:border-green-400 sm:text-sm"
+                               placeholder="Email address" />
+                        <span asp-validation-for="LoginForm.Email" class="text-red-500 text-xs"></span>
+                    </div>
+                    <div>
+                        <input asp-for="LoginForm.Password" type="password" autocomplete="current-password"
+                               class="appearance-none rounded-b-md relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-black focus:outline-none focus:ring-green-400 focus:border-green-400 sm:text-sm"
+                               placeholder="Password" />
+                        <span asp-validation-for="LoginForm.Password" class="text-red-500 text-xs"></span>
+                    </div>
+
+                    <div>
+                        <button type="submit" asp-page-handler="Login"
+                                class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-300 transition-all">
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Footer text -->
+                <p class="mt-4 text-center text-xs text-gray-500">
+                    &copy; 2025 Pharmacy Inventory Dashboard. All rights reserved.
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var message = '@TempData["ToastMessage"]';
+            var type = '@TempData["ToastType"]';
+
+            if (message) {
+                showToast(message, type);
+            }
+        });
+    </script>
+
+</body>
+
+

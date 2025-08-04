@@ -1,0 +1,33 @@
+﻿@page
+@model Inventory_Management_Dashboard.Pages.Users.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Admin";
+}
+
+<div class="container mx-auto px-4 py-6">
+
+    <h1 class="text-3xl font-bold text-red-700 mb-6">Delete Admin</h1>
+
+    <div class="space-y-4">
+        <p><strong>Full Name:</strong> @Model.User.FullName</p>
+        <p><strong>Email:</strong> @Model.User.Email</p>
+        <p><strong>Password:</strong> @Model.User.Password</p>
+        <p><strong>Role:</strong> @Model.User.Role</p>
+    </div>
+
+    <form method="post" class="mt-6">
+        <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">Delete</button>
+        <a asp-page="./Index" class="ml-2 text-gray-600 hover:underline">Cancel</a>
+    </form>
+
+</div>
+@section Scripts {
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        } else {
+            console.error("Lucide is not loaded.");
+        }
+    </script>
+}

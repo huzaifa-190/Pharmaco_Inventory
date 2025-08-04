@@ -1,0 +1,40 @@
+﻿@page
+@model Inventory_Management_Dashboard.Pages.Products.DetailsModel
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mx-auto px-4 py-6">
+    <h1 class="text-3xl font-bold text-green-700 mb-6">Product Details</h1>
+
+    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow">
+        <img src="@Model.Product.ImageURL" alt="Product Image" class=" h-72 w-[60%] object-contain rounded mb-4" />
+
+        <h2 class="text-2xl font-semibold text-gray-800 mb-2">@Model.Product.Name</h2>
+        <p class="text-gray-600 mb-2">@Model.Product.Description</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 mt-4">
+            <p><strong>Unit Price:</strong> @String.Format("{0:C}", Model.Product.UnitPrice)</p>
+            <p><strong>Stock:</strong> @Model.Product.StockQuantity</p>
+            <p><strong>Category:</strong> @Model.Product.Category?.Name</p>
+            <p><strong>Supplier:</strong> @Model.Product.Supplier?.Email</p>
+        </div>
+
+        <div class="mt-6 flex space-x-4">
+            <a asp-page="./Edit" asp-route-id="@Model.Product.ProductId" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Edit</a>
+            <a asp-page="./Index" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        } else {
+            console.error("Lucide is not loaded.");
+        }
+    </script>
+}

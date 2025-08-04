@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Dashboard</title>
+    @* <link rel="stylesheet" href="~/css/site.css" /> *@
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body class="flex min-h-screen ">
+
+    <!-- Sidebar -->
+    <div class="w-60 min-h-screen text-black flex flex-col p-6 shadow-lg">
+        <div class="flex items-center justify-start mb-8  ">
+            <img src="~/images/p_logo.png" alt="Logo Image" class="h-16 w-16 object-contain" />
+            <h2 class="text-2xl font-bold tracking-wide text-green-700">Pharmaco</h2>
+        </div>
+
+        <nav class="space-y-4">
+
+            <a asp-page="/Dashboard/Index"
+               class="group flex items-center gap-3 p-3 rounded-lg transition-all min-h-[48px]
+   @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Dashboard/Index" ? "bg-green-500 text-white" : "hover:bg-green-500")">
+                <i data-lucide="layout-dashboard"
+                   class="w-6 h-6 @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Dashboard/Index" ? "text-white" : "group-hover:text-white")"></i>
+                <span class="text-base @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Dashboard/Index" ? "text-white" : "group-hover:text-white")">Dashboard</span>
+            </a>
+
+            <a asp-page="/Products/Index"
+               class="group flex items-center gap-3 p-3 rounded-lg transition-all min-h-[48px]
+   @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Products/Index" ? "bg-green-500 text-white" : "hover:bg-green-500")">
+                <i data-lucide="package"
+                   class="w-6 h-6 @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Products/Index" ? "text-white" : "group-hover:text-white")"></i>
+                <span class="text-base @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Products/Index" ? "text-white" : "group-hover:text-white")">Products</span>
+            </a>
+
+            <a asp-page="/Suppliers/Index"
+               class="group flex items-center gap-3 p-3 rounded-lg transition-all min-h-[48px]
+   @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Suppliers/Index" ? "bg-green-500 text-white" : "hover:bg-green-500")">
+                <i data-lucide="truck"
+                   class="w-6 h-6 @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Suppliers/Index" ? "text-white" : "group-hover:text-white")"></i>
+                <span class="text-base @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Suppliers/Index" ? "text-white" : "group-hover:text-white")">Suppliers</span>
+            </a>
+
+            <a asp-page="/Orders/Index"
+               class="group flex items-center gap-3 p-3 rounded-lg transition-all min-h-[48px]
+   @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Orders/Index" ? "bg-green-500 text-white" : "hover:bg-green-500")">
+                <i data-lucide="shopping-bag"
+                   class="w-6 h-6 @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Orders/Index" ? "text-white" : "group-hover:text-white")"></i>
+                <span class="text-base @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Orders/Index" ? "text-white" : "group-hover:text-white")">Orders</span>
+            </a>
+
+            <a asp-page="/Users/Index"
+               class="group flex items-center gap-3 p-3 rounded-lg transition-all min-h-[48px]
+   @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Users/Index" ? "bg-green-500 text-white" : "hover:bg-green-500")">
+                <i data-lucide="user-cog"
+                   class="w-6 h-6 @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Users/Index" ? "text-white" : "group-hover:text-white")"></i>
+                <span class="text-base @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Users/Index" ? "text-white" : "group-hover:text-white")">Manage Admins</span>
+            </a>
+
+            <a asp-page="/Reports/Index"
+               class="group flex items-center gap-3 p-3 rounded-lg transition-all min-h-[48px]
+   @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Reports/Index" ? "bg-green-500 text-white" : "hover:bg-green-500")">
+                <i data-lucide="bar-chart-3"
+                   class="w-6 h-6 @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Reports/Index" ? "text-white" : "group-hover:text-white")"></i>
+                <span class="text-base whitespace-nowrap @(ViewContext.ActionDescriptor.RouteValues["page"] == "/Reports/Index" ? "text-white" : "group-hover:text-white")">Analytics</span>
+            </a>
+
+        </nav>
+    </div>
+
+
+
+
+
+    <!-- Main Content -->
+    <div class=" flex flex-col flex-1 ">
+        <!-- Topbar -->
+        <header class="bg-white p-6 flex justify-end items-center shadow">
+            <div class="flex items-center gap-5">
+                <!-- User name badge -->
+                <div class="flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full font-medium shadow-sm">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span>@Context.Session.GetString("UserName")</span>
+                </div>
+
+                <!-- Logout button -->
+                <a asp-page="/Logout/Index"
+                   class="px-4 py-2 bg-red-500 text-white rounded-lg shadow-sm hover:bg-red-600 transition duration-300 ease-in-out">
+                    Logout
+                </a>
+            </div>
+        </header>
+
+
+        <!-- Page Content -->
+        <main class="p-6 pr-0 flex-1 overflow-auto ">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
+
+
+
+ 

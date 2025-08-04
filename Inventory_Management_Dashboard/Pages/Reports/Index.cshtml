@@ -1,0 +1,165 @@
+﻿@page
+@model Inventory_Management_Dashboard.Pages.Reports.IndexModel
+
+@{
+    ViewData["Title"] = "Reports & Analytics";
+}
+
+<div class="container mx-auto px-4 py-6 space-y-8 bg-orange-400">
+
+    <h1 class="text-3xl font-bold text-green-700 mb-6">Reports & Analytics</h1>
+
+    <!-- Sales Report with Period Filter -->
+    <div class="bg-white p-6 rounded-lg shadow">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-semibold text-green-700">Sales Report</h2>
+            <select id="salesPeriod" class="border rounded px-3 py-2 focus:ring-green-600 focus:border-green-600">
+                <option value="Daily" selected>Daily</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Monthly">Monthly</option>
+            </select>
+        </div>
+        <canvas id="salesReportChart"></canvas>
+    </div>
+
+    <!-- Stock Levels -->
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-2xl font-semibold text-green-700 mb-4">Stock Level Overview</h2>
+        <canvas id="stockLevelChart"></canvas>
+    </div>
+
+    <!-- Profit Summary -->
+    <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="text-2xl font-semibold text-green-700 mb-4">Profit Summary</h2>
+        <canvas id="profitChart"></canvas>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        let salesReportChart;
+
+        function loadSalesChart(labels, values) {
+            if (salesReportChart) {
+                salesReportChart.destroy();
+            }
+
+            const ctx = document.getElementById('salesReportChart').getContext('2d');
+            salesReportChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Revenue',
+                        data: values,
+                        backgroundColor: 'rgba(34,197,94,0.2)',
+                        borderColor: 'rgba(34,197,94,1)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    let value = context.parsed.y;
+                                    return 'Revenue: ' + value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    responsive: true
+                }
+            });
+        }
+
+        // Load initial daily data from server model
+        loadSalesChart(@Html.Raw(Json.Serialize(Model.SalesLabels)), @Html.Raw(Json.Serialize(Model.SalesValues)));
+
+        // Handle sales period change with fresh fetch on each change
+        document.getElementById('salesPeriod').addEventListener('change', function () {
+            const period = this.value;
+
+            fetch(`/Reports/GetSalesData?period=${period}`, { cache: 'no-store' })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not OK');
+                    return response.json();
+                })
+                .then(data => {
+                    loadSalesChart(data.labels, data.values);
+                })
+                .catch(error => console.error('Fetch error:', error));
+        });
+
+        // Stock Level Chart
+        const stockLevelCtx = document.getElementById('stockLevelChart').getContext('2d');
+        new Chart(stockLevelCtx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.StockProductNames)),
+                datasets: [{
+                    label: 'Stock Quantity',
+                    data: @Html.Raw(Json.Serialize(Model.StockQuantities)),
+                    backgroundColor: 'rgba(250,204,21,0.8)',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                },
+                responsive: true
+            }
+        });
+
+        // Profit Summary Chart
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Revenue', 'Cost', 'Profit'],
+                datasets: [{
+                    data: @Html.Raw(Json.Serialize(Model.ProfitSummaryValues)),
+                    backgroundColor: [
+                        'rgba(34,197,94,0.8)',   // Green
+                        'rgba(239,68,68,0.8)',   // Red
+                        'rgba(59,130,246,0.8)'   // Blue
+                    ]
+                }]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.label || '';
+                                let value = context.parsed;
+                                return `${label}: ${value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`;
+                            }
+                        }
+                    }
+                },
+                responsive: true
+            }
+        });
+
+    </script>
+
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        } else {
+            console.error("Lucide is not loaded.");
+        }
+    </script>
+}

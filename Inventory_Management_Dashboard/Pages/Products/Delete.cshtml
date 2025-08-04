@@ -1,0 +1,36 @@
+﻿@page
+@model Inventory_Management_Dashboard.Pages.Products.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Product";
+}
+
+<div class="container mx-auto px-4 py-6">
+    <h1 class="text-3xl font-bold text-red-700 mb-6">Delete Product</h1>
+
+    <div class="bg-white border border-gray-200 rounded-lg p-6 shadow">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">@Model.Product.Name</h2>
+        <p class="text-gray-600 mb-2">Description: @Model.Product.Description</p>
+        <p class="text-gray-700 mb-4">Unit Price: <strong>@String.Format("{0:C}", Model.Product.UnitPrice)</strong></p>
+        <img src="@Model.Product.ImageURL" alt="Product Image" class="h-40 w-40 object-cover rounded mb-4" />
+
+        <p class="text-gray-700 mb-4">Are you sure you want to delete this product?</p>
+
+        <form method="post" class="flex space-x-4">
+            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">Delete</button>
+            <a asp-page="./Index" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition">Cancel</a>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        } else {
+            console.error("Lucide is not loaded.");
+        }
+    </script>
+}
