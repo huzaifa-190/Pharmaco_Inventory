@@ -15,6 +15,14 @@
 
 ---
 
+## 📷 Few Screenshots
+
+| Dashboard | Analytics | Product Management |
+|----------|-----------|--------------------|
+| ![Dashboard](screenshots/dashboard.png) | ![Analytics](screenshots/analytics.png) | ![Products](screenshots/products.png) |
+
+---
+
 ## 🚀 Getting Started
 
 ### ✅ Prerequisites
@@ -65,15 +73,6 @@
 - **Tailwind CSS** for UI
 - **Visual Studio**  
 - **C#**
-
----
-
-## 📷 Screenshots
-
-| Dashboard | Analytics | Product Management |
-|----------|-----------|--------------------|
-| ![Dashboard](screenshots/dashboard.png) | ![Analytics](screenshots/analytics.png) | ![Products](screenshots/products.png) |
-
 
 ---
 
