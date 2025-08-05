@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +11,9 @@ namespace Inventory_Management_Dashboard.Pages.Orders
 {
     public class DetailsModel : PageModel
     {
-        private readonly Inventory_Management_Dashboard.Data.AppDbContext _context;
+        private readonly AppDbContext _context;
 
-        public DetailsModel(Inventory_Management_Dashboard.Data.AppDbContext context)
+        public DetailsModel(AppDbContext context)
         {
             _context = context;
         }
@@ -28,15 +27,16 @@ namespace Inventory_Management_Dashboard.Pages.Orders
                 return NotFound();
             }
 
-            var order = await _context.Orders.FirstOrDefaultAsync(m => m.OrderId == id);
-            if (order == null)
+            Order = await _context.Orders
+                .Include(o => o.Product)  
+                .Include(o => o.User)  
+                .FirstOrDefaultAsync(m => m.OrderId == id);
+
+            if (Order == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Order = order;
-            }
+
             return Page();
         }
     }

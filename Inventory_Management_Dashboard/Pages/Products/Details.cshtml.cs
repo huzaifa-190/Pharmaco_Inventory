@@ -28,16 +28,37 @@ namespace Inventory_Management_Dashboard.Pages.Products
                 return NotFound();
             }
 
-            var product = await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
-            if (product == null)
+            Product = await _context.Products
+                .Include(p => p.Category)   
+                .Include(p => p.Supplier)   
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+
+            if (Product == null)
             {
                 return NotFound();
             }
-            else
-            {
-                Product = product;
-            }
+
             return Page();
         }
+
+
+        //public async Task<IActionResult> OnGetAsync(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var product = await _context.Products.FirstOrDefaultAsync(m => m.ProductId == id);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    else
+        //    {
+        //        Product = product;
+        //    }
+        //    return Page();
+        //}
     }
 }
